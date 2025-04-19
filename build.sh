@@ -164,7 +164,7 @@ CMDLINE='androidboot.hardware=exynos990 loop.max_part=7'
 HASHTYPE=sha1
 HEADER_VERSION=2
 OS_PATCH_LEVEL=2025-03
-OS_VERSION=15.0.0
+OS_VERSION=14.0.0
 PAGESIZE=2048
 RAMDISK=build/out/$MODEL/ramdisk.cpio.gz
 OUTPUT_FILE=build/out/$MODEL/boot.img
