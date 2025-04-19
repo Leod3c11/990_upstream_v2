@@ -36,7 +36,7 @@ jobs:
 
     - name: Executar script de compilação
       run: |
-        bash build.sh -m r8s) -k n -r n || { echo "Erro ao executar build.sh"; cat build.sh; exit 1; }
+        bash build.sh -m r8s -k n -r n || { echo "Erro ao executar build.sh"; cat build.sh; exit 1; }
     - name: Upload Kernel Build
       uses: actions/upload-artifact@v4
       with:
