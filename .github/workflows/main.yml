@@ -1,0 +1,40 @@
+name: Build Kernel
+on:
+  workflow_dispatch:
+
+jobs:
+  Build-Kernel:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - name: Build Kernel
+      uses: leod3c11/kernel_build_action@main
+      with:
+          kernel-url: https://github.com/Leod3c11/990_upstream_v2.git
+          kernel-dir: main
+          kernel-branch: main
+          config: r8s.config
+          arch: arm64
+          aosp-gcc: true
+          aosp-clang: true
+          ksu: true
+          kvm: true
+          android-version: 12
+          aosp-clang-version: r416183b1
+          anykernel3: false
+
+    # New step to upload compilation artifacts
+    - name: Upload Kernel Build
+      uses: actions/upload-artifact@v4
+      with:
+        name: kernel-artifacts
+        path: |
+          build/out/r8s/Image
+          build/out/r8s/dtb.img
+          build/out/r8s/dtbo.img
+          build/out/r8s/boot.img
+          build/out/r8s/zip/*.zip
