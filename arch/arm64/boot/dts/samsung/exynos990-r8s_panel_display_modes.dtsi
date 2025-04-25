@@ -90,9 +90,9 @@
 					width = <1080>;
 					height = <2400>;
 					/* timing parameters */
-					refresh_rate = <24>;			/* logical refresh rate */
+					refresh_rate = <1>;			/* logical refresh rate */
 					refresh_mode = <1>;				/* 0:NS, 1:HS */
-					panel_refresh_rate = <24>;		/* panel internal refresh rate */
+					panel_refresh_rate = <1>;		/* panel internal refresh rate */
 					panel_refresh_mode = <1>;		/* 0:NS, 1:HS */
 					panel_te_st = <0>;				/* te rising */
 					panel_te_ed = <0>;				/* te falling */
