@@ -30,7 +30,7 @@
 		gpu_dvfs_table_size = <7 8>; /*<row col>*/
 		/*  8 columns      freq  down   up  stay  mif   little  middle   big  */
 		gpu_dvfs_table = <
-			897000    78  100   5  2730000  1300000       0 1690000
+			897000    78  100   5  3172000  1300000       0 1690000
 			702000    78   90   5  2535000  1300000       0       0
 			572000    78   90   1  2028000  1300000       0       0
 			455000    75   85   1  1539000  1300000       0       0
@@ -76,8 +76,8 @@
 		gpu_runtime_pm_delay_time = <50>;
 		gpu_dvfs_polling_time = <30>;
 		gpu_pmqos_int_disable = <1>;
-		gpu_pmqos_compute_mif_max_clock = <2730000>;
-		gpu_pmqos_mif_max_clock = <2730000>;
+		gpu_pmqos_compute_mif_max_clock = <3172000>;
+		gpu_pmqos_mif_max_clock = <3172000>;
 		gpu_pmqos_mif_max_clock_base = <650000>;
 		gpu_pmqos_g3d_clock = <897000 702000>;
 		gpu_pmqos_cl2_max_clock = <1378000 1690000>;
