@@ -41,23 +41,36 @@ int gpexbe_clock_get_level_num(void)
 
 int gpexbe_clock_get_rate_asv_table(struct freq_volt *fv_array, int level_num)
 {
-	int i;
-	int ret = 0;
-	struct dvfs_rate_volt rate_volt[48];
+    int i;
+    int ret = 0;
+    struct dvfs_rate_volt *rate_volt;
 
-	ret = cal_dfs_get_rate_asv_table(cal_id, rate_volt);
+    // Alocar dinamicamente memória para a tabela de frequência-voltagem
+    rate_volt = malloc(level_num * sizeof(struct dvfs_rate_volt));
+    if (!rate_volt) {
+        // Tratar erro de alocação
+        return -ENOMEM;
+    }
 
-	if (!ret) {
-		/* TODO: print error. Also remove this size limit by using dynamic alloc */
-		return ret;
-	}
+    // Obter a tabela de frequência-voltagem do módulo cal-if
+    ret = cal_dfs_get_rate_asv_table(cal_id, rate_volt);
 
-	for (i = 0; i < level_num; i++) {
-		fv_array[i].freq = rate_volt[i].rate;
-		fv_array[i].volt = rate_volt[i].volt;
-	}
+    if (!ret) {
+        // Liberar a memória alocada antes de retornar
+        free(rate_volt);
+        return ret; // Retorna erro se a obtenção falhar
+    }
 
-	return ret;
+    // Preencher o array passado como argumento com os dados obtidos
+    for (i = 0; i < level_num; i++) {
+        fv_array[i].freq = rate_volt[i].rate; // Frequência
+        fv_array[i].volt = rate_volt[i].volt; // Voltagem
+    }
+
+    // Liberar a memória alocada após o uso
+    free(rate_volt);
+
+    return ret;
 }
 
 int gpexbe_clock_get_boot_freq(void)
